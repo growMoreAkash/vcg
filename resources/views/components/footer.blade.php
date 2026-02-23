@@ -16,16 +16,6 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8">
                 <div class="space-y-1">
-                    <h3 class="font-bold text-sm">St. Louis</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed">
-                        8640 Evans Ave.<br>
-                        St. Louis, MO 63134<br>
-                        p: +1 314-428-5100<br>
-                        f: +1 314-429-3137
-                    </p>
-                </div>
-
-                <div class="space-y-1">
                     <h3 class="font-bold text-sm">Delhi NCR region</h3>
                     <p class="text-gray-400 text-xs leading-relaxed">
                         {{-- 35 East Wacker Drive<br>
@@ -35,14 +25,27 @@
                         TBU
                     </p>
                 </div>
+                <div class="space-y-1">
+                    <h3 class="font-bold text-sm">Los Angeles</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        {{-- 8640 Evans Ave.<br>
+                        St. Louis, MO 63134<br>
+                        p: +1 314-428-5100<br>
+                        f: +1 314-429-3137 --}}
+                        TBU
+                    </p>
+                </div>
+
+
 
                 <div class="space-y-1">
-                    <h3 class="font-bold text-sm">Southeast Region</h3>
+                    <h3 class="font-bold text-sm">Sydney</h3>
                     <p class="text-gray-400 text-xs leading-relaxed">
-                        2859 Paces Ferry Road SE<br>
+                        {{-- 2859 Paces Ferry Road SE<br>
                         Suite 1900<br>
                         Atlanta, GA 30339<br>
-                        p: +1 770-767-6341
+                        p: +1 770-767-6341 --}}
+                        TBU
                     </p>
                 </div>
             </div>
@@ -69,7 +72,7 @@
                 <h2 class="text-xs font-bold tracking-widest uppercase mb-6">Contact</h2>
                 <p class="text-xs text-gray-400 leading-relaxed mb-6">
                     We want to hear from you. Please send all inquiries about projects, press or career opportunities to
-                    <a href="mailto:info@realvcg.com" class="underline hover:text-white">info@realvcg.com</a>
+                    <a href="mailto:contact@vortexconsultgroup.com" class="underline hover:text-white">contact@vortexconsultgroup.com</a>
                 </p>
                 <div class="flex gap-4 text-xl">
                     <a href="#" class="hover:text-red-700 transition-transform hover:-translate-y-1"><i

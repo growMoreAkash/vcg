@@ -70,8 +70,8 @@
         }
 
         .reveal-logo {
-            width: 65px;
-            height: 65px;
+            width: 85px;
+            height: 85px;
             object-fit: contain;
             flex-direction: column
                 /* Prevent dragging the logo images */

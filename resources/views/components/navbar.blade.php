@@ -150,7 +150,7 @@
                 </div>
                 <div class="flex justify-center items-center gap-5 mt-6">
                     <i class="ri-mail-line text-gray-600 text-xl mt-1"></i>
-                    <h1>vortex@gmail.com</h1>
+                    <h1>contact@vortexconsultgroup.com</h1>
                 </div>
                 <div class="mt-5 font-medel">
                     <input type="email" placeholder="Enter your email" class="bg-white py-2 px-2 sm:w-54 w-40">
