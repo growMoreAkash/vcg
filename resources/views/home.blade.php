@@ -267,78 +267,6 @@
             }
         }
 
-
-        /*
-                                                            .glow-on-hover {
-                                                                width: 220px;
-                                                                height: 50px;
-                                                                border: none;
-                                                                outline: none;
-                                                                color: #fff;
-                                                                background: #ac0606;
-                                                                cursor: pointer;
-                                                                position: relative;
-                                                                z-index: 0;
-                                                                border-radius: 10px;
-                                                            }
-
-                                                            .glow-on-hover:before {
-                                                                content: '';
-                                                                background: linear-gradient(45deg, #af7676, #7e0202, rgb(230, 155, 155), #8a2020, #ce7b7b, #941924, #e79393f1, #770404ef, #d47474ea);
-                                                                position: absolute;
-                                                                top: -2px;
-                                                                left: -2px;
-                                                                background-size: 400%;
-                                                                z-index: -1;
-                                                                filter: blur(5px);
-                                                                width: calc(100% + 4px);
-                                                                height: calc(100% + 4px);
-                                                                animation: glowing 20s linear infinite;
-                                                                opacity: 0;
-                                                                transition: opacity .3s ease-in-out;
-                                                                border-radius: 10px;
-                                                            }
-
-                                                            .glow-on-hover:active {
-                                                                color: #851515
-                                                            }
-
-                                                            .glow-on-hover:active:after {
-                                                                background: transparent;
-                                                            }
-
-                                                            .glow-on-hover:hover:before {
-                                                                opacity: 1;
-                                                            }
-
-                                                            .glow-on-hover:after {
-                                                                z-index: -1;
-                                                                content: '';
-                                                                position: absolute;
-                                                                width: 100%;
-                                                                height: 100%;
-                                                                background: #830404;
-                                                                left: 0;
-                                                                top: 0;
-                                                                border-radius: 10px;
-                                                            }
-
-                                                            @keyframes glowing {
-                                                                0% {
-                                                                    background-position: 0 0;
-                                                                }
-
-                                                                50% {
-                                                                    background-position: 400% 0;
-                                                                }
-
-                                                                100% {
-                                                                    background-position: 0 0;
-                                                                }
-                                                            } */
-
-
-
         .btn-three {
             color: #FFF;
             transition: all 0.5s;
@@ -545,6 +473,130 @@
             }
         }
     </style>
+
+    <style>
+        /* Swiper Wrapper */
+        .cinematicSwiper {
+            width: 100%;
+            overflow: hidden;
+            /* Keeps the slider strictly inside the right column */
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+
+        /* The Card Slide */
+        .cinematic-card {
+            width: 140px;
+            /* Slim base width so 3-4 fit nicely */
+            height: 400px;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            margin-right: 16px;
+            /* Space between cards */
+        }
+
+        /* Hover Expansion */
+        .cinematic-card:hover {
+            width: 320px;
+            /* Expanded width on hover */
+        }
+
+        /* Image Styling */
+        .card-image-wrapper {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(60%) brightness(0.5);
+            transition: filter 0.4s ease;
+        }
+
+        .cinematic-card:hover .card-image-wrapper img {
+            filter: grayscale(0%) brightness(1);
+        }
+
+        /* Gradient Overlay */
+        .overlay-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .cinematic-card:hover .overlay-gradient {
+            opacity: 1;
+        }
+
+        /* Text Content inside Cards */
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 24px;
+            width: 320px;
+            /* Matches hover width to prevent text wrap snapping */
+            color: #fff;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.4s ease 0.1s;
+            /* Slight delay so box expands first */
+            pointer-events: none;
+        }
+
+        .cinematic-card:hover .card-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-content h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            white-space: nowrap;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+
+        /* Swiper Pagination Styling */
+        .swiper-pagination {
+            position: relative !important;
+            bottom: 0 !important;
+            text-align: left !important;
+            padding-left: 10px;
+        }
+
+        .swiper-pagination-bullet {
+            background-color: #555 !important;
+            opacity: 1 !important;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #b91c1c !important;
+            /* Tailwind red-700 */
+            width: 24px !important;
+            border-radius: 10px !important;
+            transition: width 0.3s ease;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -552,10 +604,10 @@
     {{-- banner --}}
     <section class=" bg-[#e5e7eb] overflow-hidden">
         <div class="text-center my-14">
-            <h1 class="text-xl text-gray-700">
+            <h1 class="text-xl text-gray-700 font-verdana">
                 Welcome to Vortex Consulting Group
             </h1>
-            <h2 class="text-3xl text-gray-900 font-semibold"> Partnering with Leaders to Shape Strategy and Unlock Growth
+            <h2 class="text-3xl text-gray-900 font-semibold font-verdana"> Partnering with Leaders to Shape Strategy and Unlock Growth
             </h2>
         </div>
 
@@ -837,6 +889,77 @@
         </div>
     </section>
 
+    <section class="bg-[#ffffff] py-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+
+            <div class="w-full lg:w-[35%] text-gray-800 flex-shrink-0">
+                <h3 class="text-red-700 uppercase tracking-widest text-sm font-bold mb-4">
+                    Who do we assist?
+                </h3>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                    We advise across industries and stages
+                </h2>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                    We are sector and stage agnostic. We have been engaged by global PE & VC funds, Fortune-500
+                    corporations, Indian conglomerates and SMEs.
+                </p>
+            </div>
+
+            <div class="w-full lg:w-[65%] min-w-0">
+                <div class="swiper cinematicSwiper pb-12">
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide cinematic-card group">
+                            <div class="card-image-wrapper">
+                                <img src="{{ asset('h1.jpeg') }}" alt="PE & VC Funds" />
+                                <div class="overlay-gradient"></div>
+                            </div>
+                            <div class="card-content">
+                                <h3>PE & VC Funds</h3>
+                                <p>Delivering strategic due diligence and portfolio value creation.</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide cinematic-card group">
+                            <div class="card-image-wrapper">
+                                <img src="{{ asset('h2.jpeg') }}" alt="Fortune 500" />
+                                <div class="overlay-gradient"></div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Fortune-500</h3>
+                                <p>Guiding global enterprises through complex M&A and market entry.</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide cinematic-card group">
+                            <div class="card-image-wrapper">
+                                <img src="{{ asset('h3.jpeg') }}" alt="Conglomerates" />
+                                <div class="overlay-gradient"></div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Conglomerates</h3>
+                                <p>Transforming legacy businesses with modern growth strategies.</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide cinematic-card group">
+                            <div class="card-image-wrapper">
+                                <img src="{{ asset('h3.jpeg') }}" alt="SMEs" />
+                                <div class="overlay-gradient"></div>
+                            </div>
+                            <div class="card-content">
+                                <h3>SMEs</h3>
+                                <p>Scaling small and medium enterprises for exponential growth.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="swiper-pagination mt-8"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
     <section class="bg-[#363b46] py-20 px-6">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row justify-center items-start gap-16">
@@ -887,7 +1010,8 @@
                 </div>
 
                 <div id="tab-career" class="hidden">
-                    <h1 class="text-xl font-semibold text-center text-gray-400 lg:text-left mb-4">Join Us in Shaping Decision</h1>
+                    <h1 class="text-xl font-semibold text-center text-gray-400 lg:text-left mb-4">Join Us in Shaping
+                        Decision</h1>
 
                     <form class="grid grid-cols-1 md:grid-cols-2 gap-8" enctype="multipart/form-data">
                         <input type="text" placeholder="Full Name*"
@@ -1143,6 +1267,31 @@
             .forEach(el => timelineObserver.observe(el));
     </script>
 
+    <script>
+        var swiper = new Swiper(".cinematicSwiper", {
+            // 'auto' allows slides to have different widths based on CSS
+            slidesPerView: "auto",
+            centeredSlides: true, // Optional: Centers the active slide
+            spaceBetween: 20, // Gap between slides
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            // Optional: ensure smooth scrolling on touch devices
+            freeMode: true,
+        });
+        document.addEventListener("DOMContentLoaded", () => {
+            const cinematicSwiper = new Swiper(".cinematicSwiper", {
+                slidesPerView: "auto", // Allows cards to have dynamic widths
+                spaceBetween: 0, // Handled by margin-right in CSS
+                grabCursor: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+            });
+        });
+    </script>
 
     <script>
         function switchTab(tabName) {

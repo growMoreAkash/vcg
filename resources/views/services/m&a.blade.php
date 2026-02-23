@@ -16,23 +16,14 @@
         img {
             will-change: transform;
         }
-
-        #snake-path {
-            transition: stroke-dashoffset 0.1s linear;
-        }
-
-        /* Styling for the pulsing glow effect */
-        .glow-head {
-            filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
-        }
     </style>
 @endpush
 
 @section('content')
-<section class="w-full relative bg-white overflow-x-hidden">
+    {{-- <section class="w-full relative bg-white overflow-x-hidden">
         
         <div class="relative h-[80vh] w-full">
-            <img src="{{ asset('b2.png') }}" class="w-full h-full object-cover" alt="Hero Background">
+            <img src="{{ asset('b1.png') }}" class="w-full h-full object-cover" alt="Hero Background">
             <div class="absolute inset-0 bg-black/50"></div>
             <div class="absolute top-[40%] left-[5%] text-white max-w-3xl z-10">
                 <h1 class="text-4xl italic mb-6">
@@ -40,9 +31,11 @@
                     <span id="typing-text" class="text-red-600"></span>
                     <span class="animate-pulse">|</span>
                 </h1>
+
                 <p class="text-lg mb-6">
                     Empowering your business with strategic insights and data-driven solutions to navigate complex market landscapes.
                 </p>
+
                 <button class="bg-red-800 px-8 py-4 text-xl font-bold cursor-pointer hover:bg-white hover:text-red-800 transition">
                     Know More
                 </button>
@@ -59,34 +52,35 @@
         <section class="bg-gray-900 text-white relative py-20">
             <div id="animation-container" class="relative min-h-screen px-6 md:px-20">
 
-                <div class="absolute left-6 md:left-20 top-0 h-full w-24">
-                    <svg width="100" height="100%" viewBox="0 0 100 1000" preserveAspectRatio="none" class="h-full overflow-visible">
-                        <defs>
-                            <filter id="glow">
-                                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
-                                <feMerge>
-                                    <feMergeNode in="coloredBlur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                        </defs>
-                        
-                        <path id="snake-path"
-                            d="M 50 0 C 100 150 0 150 50 300 C 100 450 0 450 50 600 C 100 750 0 750 50 900 C 100 1050 0 1050 50 1200"
-                            stroke="#991b1b" stroke-width="5" fill="transparent" stroke-linecap="round" />
-                        
-                        {{-- <circle id="snake-tip" r="3" fill="#ef4444" filter="url(#glow)" class="glow-head" /> --}}
-                    </svg>
-                </div>
+                <div class="mx-auto flex flex-col gap-32 relative z-10 max-w-5xl">
 
-                <div class="ml-24 md:ml-48 flex flex-col gap-32 relative z-10 max-w-5xl">
                     @php
                         $sections = [
-                            ['img' => 's1.jpg', 'title' => 'M&A Strategy', 'desc' => 'In today’s layered and dynamic industry framework, M&A transactions require a deep understanding of deal intricacies...'],
-                            ['img' => 's2.jpg', 'title' => 'Target Screening', 'desc' => 'If acquiring companies were as straightforward as buying basic commodities, identifying the right targets would be simple.'],
-                            ['img' => 's3.jpg', 'title' => 'Commercial Due Diligence', 'desc' => 'A significant number of Mergers & Acquisitions (M&A) and investment deals fail to materialize due to unexpected discrepancies...'],
-                            ['img' => 's4.jpg', 'title' => 'Shareholder Value Management', 'desc' => 'At Vortex Consulting Group, we specialize in enhancing shareholder value by explicitly linking management strategies...'],
-                            ['img' => 's5.jpg', 'title' => 'Portfolio Strategy', 'desc' => 'Vortex Consulting Group specializes in helping investors develop high-yield portfolio strategies that drive both revenue growth...'],
+                            [
+                                'img' => 's1.jpg',
+                                'title' => 'M&A Strategy',
+                                'desc' => 'In today’s layered and dynamic industry framework, M&A transactions require a deep understanding of deal intricacies, capital allocation strategies, a...',
+                            ],
+                            [
+                                'img' => 's2.jpg',
+                                'title' => 'Target Screening',
+                                'desc' => 'If acquiring companies were as straightforward as buying basic commodities, identifying the right targets would be simple.',
+                            ],
+                            [
+                                'img' => 's3.jpg',
+                                'title' => 'Commercial Due Diligence',
+                                'desc' => 'A significant number of Mergers & Acquisitions (M&A) and investment deals fail to materialize due to unexpected discrepancies uncovered during the due...',
+                            ],
+                            [
+                                'img' => 's4.jpg',
+                                'title' => 'Shareholder Value Management',
+                                'desc' => 'At Vortex Consulting Group, we specialize in enhancing shareholder value by explicitly linking management strategies to the financial returns they generate.',
+                            ],
+                            [
+                                'img' => 's5.jpg',
+                                'title' => 'Portfolio Strategy',
+                                'desc' => 'Vortex Consulting Group specializes in helping investors develop high-yield portfolio strategies that drive both revenue growth and profitability in t...',
+                            ],
                         ];
                     @endphp
 
@@ -103,10 +97,11 @@
                             </div>
                         </div>
                     @endforeach
+
                 </div>
             </div>
         </section>
-    </section>
+    </section> --}}
 @endsection
 
 @push('scripts')
@@ -117,20 +112,17 @@
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 
+            /* ---------------- 1. TYPING EFFECT ---------------- */
             const words = [
-                "M&A Strategy",
-                "Target Screening",
-                "Commercial Due Diligence",
-                "Shareholder Value Management",
-                "Portfolio Strategy"
+                "Customer & Channel Strategy",
+                "Competitive Benchmarking and Analytics",
+                "Strategic Wargaming",
+                "Market Entry Strategy",
+                "Corporate & Business Unit Strategy"
             ];
 
-            let wordIndex = 0,
-                charIndex = 0,
-                isDeleting = false;
-            const typingSpeed = 100,
-                deletingSpeed = 50,
-                pauseTime = 2000;
+            let wordIndex = 0, charIndex = 0, isDeleting = false;
+            const typingSpeed = 100, deletingSpeed = 50, pauseTime = 2000;
             const typingElement = document.getElementById("typing-text");
 
             function typeEffect() {
@@ -153,46 +145,20 @@
             }
             typeEffect();
 
-            /* ---------------- 2. SNAKE PATH ANIMATION ---------------- */
-            const path = document.querySelector("#snake-path");
-            const tip = document.querySelector("#snake-tip");
-            const pathLength = path.getTotalLength();
-
-            gsap.set(path, { strokeDasharray: pathLength, strokeDashoffset: pathLength });
-
-            gsap.to(path, {
-                strokeDashoffset: 0,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "#animation-container",
-                    start: "top 20%",
-                    end: "bottom 80%",
-                    scrub: 0.9,
-                    onUpdate: (self) => {
-                        // Get the point on the path corresponding to current scroll progress
-                        const point = path.getPointAtLength(self.progress * pathLength);
-                        gsap.set(tip, { attr: { cx: point.x, cy: point.y } });
-                    }
-                }
-            });
-
-            // Pulse animation for the glowing tip
-            gsap.to(tip, {
-                attr: { r: 5 },
-                opacity: 0.7,
-                duration: 0.8,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-
-            /* 3. ITEM REVEAL ANIMATION */
+            /* ---------------- 2. ITEM REVEAL ANIMATION ---------------- */
             const items = document.querySelectorAll('.b-item');
+
             items.forEach((item) => {
                 gsap.fromTo(item, 
-                { x: 100, opacity: 0, scale: 0.9 }, 
                 { 
-                    x: 0, opacity: 1, scale: 1,
+                    x: 100, 
+                    opacity: 0, 
+                    scale: 0.9 
+                }, 
+                { 
+                    x: 0, 
+                    opacity: 1, 
+                    scale: 1,
                     duration: 1.2,
                     ease: "power3.out",
                     scrollTrigger: {

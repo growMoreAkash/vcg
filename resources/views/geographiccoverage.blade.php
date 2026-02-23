@@ -62,10 +62,10 @@
             transform: translateY(10px);
 
             /* IMPORTANT: This prevents the invisible box from triggering
-                                       hovers or blocking the map when it's hidden */
+                                           hovers or blocking the map when it's hidden */
             pointer-events: none;
             white-space: nowrap;
-            z-index: 100000;
+            z-index: 10000000000000;
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
@@ -104,7 +104,8 @@
                     We offer <span id="typing-text" class="text-red-600"></span>
                     <span class="animate-pulse">|</span>
                 </h1>
-                <p class="text-lg mb-6">Empowering your business with strategic insights across North America, Europe, APAC-J.</p>
+                <p class="text-lg mb-6">Empowering your business with strategic insights across North America, Europe,
+                    APAC-J.</p>
             </div>
         </div>
     </section>
@@ -151,7 +152,9 @@
                 {
                     city: "USA	New York	New York City",
                     coords: [-74.0060, 40.7128],
-                    logos: ["{{ asset('logo/l3.png') }}", "{{ asset('logo/l8.png') }}", "{{ asset('logo/l14.png') }}","{{ asset('logo/l17.png') }}"]
+                    logos: ["{{ asset('logo/l3.png') }}", "{{ asset('logo/l8.png') }}",
+                        "{{ asset('logo/l14.png') }}", "{{ asset('logo/l17.png') }}"
+                    ]
                 },
                 {
                     city: "USA	Texas	Irving",
@@ -171,7 +174,7 @@
                 {
                     city: "USA	California	Mountain View",
                     coords: [-122.0842, 37.3861],
-                    logos: ["{{ asset('logo/l7.png') }}","{{ asset('logo/l11.png') }}"]
+                    logos: ["{{ asset('logo/l7.png') }}", "{{ asset('logo/l11.png') }}"]
                 },
                 {
                     city: "USA	Mississippi	Bay St. Louis",
@@ -231,147 +234,176 @@
                 {
                     city: "Canada	Ontario	Mississauga",
                     coords: [-79.6300, 43.5890],
-                    logos: ["{{ asset('logo/l23.png') }}"]
+                    // logos: ["{{ asset('logo/l23.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Canada	Ontario	Toronto",
                     coords: [-79.3832, 43.6532],
-                    logos: ["{{ asset('logo/l24.png') }}","{{ asset('logo/l28.png') }}"]
+                    // logos: ["{{ asset('logo/l24.png') }}","{{ asset('logo/l28.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Canada	Manitoba	Winnipeg",
                     coords: [-96.9489, 49.8951],
-                    logos: ["{{ asset('logo/l25.png') }}"]
+                    // logos: ["{{ asset('logo/l25.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Canada	Ontario	Brampton",
                     coords: [-79.7624, 43.6842],
-                    logos: ["{{ asset('logo/l26.png') }}"]
+                    // logos: ["{{ asset('logo/l26.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Canada	Ontario	Ottawa",
                     coords: [-75.6972, 45.4215],
-                    logos: ["{{ asset('logo/l27.png') }}"]
+                    // logos: ["{{ asset('logo/l27.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Canada	Quebec	Quebec City",
                     coords: [-71.2183, 46.8139],
-                    logos: ["{{ asset('logo/l29.png') }}","{{ asset('logo/l32.png') }}"]
+                    // logos: ["{{ asset('logo/l29.png') }}","{{ asset('logo/l32.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Canada	British Columbia	Vancouver",
                     coords: [-123.1207, 49.2827],
-                    logos: ["{{ asset('logo/l30.png') }}"]
+                    // logos: ["{{ asset('logo/l30.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Canada	Ontario	Waterloo",
                     coords: [-80.5204, 43.4643],
-                    logos: ["{{ asset('logo/l31.png') }}"]
+                    // logos: ["{{ asset('logo/l31.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Canada	Saskatchewan	Regina",
                     coords: [-104.6037, 50.4452],
-                    logos: ["{{ asset('logo/l33.png') }}"]
+                    // logos: ["{{ asset('logo/l33.png') }}"]
+                    logos: []
                 },
                 {
                     city: "France	Île-de-France	Rueil-Malmaison",
                     coords: [2.3520, 48.8867],
-                    logos: ["{{ asset('logo/l34.png') }}"]
+                    // logos: ["{{ asset('logo/l34.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Switzerland	Basel-Stadt	Basel",
                     coords: [7.5886, 47.5596],
-                    logos: ["{{ asset('logo/l35.png') }}"]
+                    // logos: ["{{ asset('logo/l35.png') }}"]
+                    logos: []
                 },
                 {
                     city: "United Kingdom	Berkshire	Newbury",
                     coords: [-1.3250, 51.4083],
-                    logos: ["{{ asset('logo/l36.png') }}"]
+                    // logos: ["{{ asset('logo/l36.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Germany	Bavaria	Munich",
                     coords: [11.5820, 48.1351],
-                    logos: ["{{ asset('logo/l37.png') }}"]
+                    // logos: ["{{ asset('logo/l37.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Belgium	Antwerp Province	Oevel ",
                     coords: [4.4020, 51.1800],
-                    logos: ["{{ asset('logo/l38.png') }}"]
+                    // logos: ["{{ asset('logo/l38.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Germany	Bavaria	Munich",
                     coords: [11.5820, 48.1351],
-                    logos: ["{{ asset('logo/l39.png') }}"]
+                    // logos: ["{{ asset('logo/l39.png') }}"]
+                    logos: []
                 },
                 {
                     city: "France	Île-de-France	Paris",
                     coords: [2.3522, 48.8566],
-                    logos: ["{{ asset('logo/l40.png') }}"]
+                    // logos: ["{{ asset('logo/l40.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Italy	Friuli-Venezia Giulia	Trieste",
                     coords: [13.7863, 45.6482],
-                    logos: ["{{ asset('logo/l41.png') }}"]
+                    // logos: ["{{ asset('logo/l41.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Spain	A Coruña	Arteixo",
                     coords: [-8.5420, 43.5167],
-                    logos: ["{{ asset('logo/l42.png') }}"]
+                    // logos: ["{{ asset('logo/l42.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Germany	Bavaria	Munich",
                     coords: [11.5820, 48.1351],
-                    logos: ["{{ asset('logo/l43.png') }}"]
+                    // logos: ["{{ asset('logo/l43.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Australia	Queensland	Brisbane",
                     coords: [153.0210, -27.4698],
-                    logos: ["{{ asset('logo/l44.png') }}"]
+                    // logos: ["{{ asset('logo/l44.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Australia	New South Wales	Sydney",
                     coords: [151.2093, -33.8688],
-                    logos: ["{{ asset('logo/l45.png') }}","{{ asset('logo/l46.png') }}","{{ asset('logo/l48.png') }}","{{ asset('logo/l49.png') }}"]
+                    // logos: ["{{ asset('logo/l45.png') }}","{{ asset('logo/l46.png') }}","{{ asset('logo/l48.png') }}","{{ asset('logo/l49.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Australia	Victoria	Melbourne",
                     coords: [151.2093, -37.8136],
-                    logos: ["{{ asset('logo/l50.png') }}","{{ asset('logo/l51.png') }}"]
+                    // logos: ["{{ asset('logo/l50.png') }}","{{ asset('logo/l51.png') }}"]
+                    logos: []
                 },
                 {
                     city: "New Zealand	Auckland Region	Auckland",
                     coords: [174.7634, -36.8485],
-                    logos: ["{{ asset('logo/l52.png') }}"]
+                    // logos: ["{{ asset('logo/l52.png') }}"]
+                    logos: []
                 },
                 {
                     city: "New Zealand	Wellington Region	Wellington",
                     coords: [174.7830, -41.2865],
-                    logos: ["{{ asset('logo/l53.png') }}"]
+                    // logos: ["{{ asset('logo/l53.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Japan	Tokyo	Minato City (Tokyo)",
                     coords: [139.7795, 35.6762],
-                    logos: ["{{ asset('logo/l54.png') }}","{{ asset('logo/l57.png') }}"]
+                    // logos: ["{{ asset('logo/l54.png') }}","{{ asset('logo/l57.png') }}"]
+                    logos: []
                 },
                 {
-                    city: "Japan	Aichi	Toyota City",
-                    coords: [139.7200, 35.1814],
-                    logos: ["{{ asset('logo/l55.png') }}"]
+                    city: "Japan    Aichi toyota City",
+                    coords: [137.1562, 35.0828], // [Longitude, Latitude]
+                    // logos: ["{{ asset('logo/l55.png') }}"]
+                    logos: []
                 },
                 {
                     city: "Japan	Tokyo	Tokyo",
                     coords: [139.6917, 35.6895],
-                    logos: ["{{ asset('logo/l56.png') }}"]
+                    // logos: ["{{ asset('logo/l56.png') }}"]
+                    logos: []
                 },
                 {
                     city: "India	Tamil Nadu	Chennai",
                     coords: [80.2707, 13.0827],
-                    logos: ["{{ asset('logo/l58.png') }}"]
+                    // logos: ["{{ asset('logo/l58.png') }}"]
+                    logos: []
                 },
                 {
                     city: "South Korea	Seoul	Seoul",
                     coords: [126.9780, 37.5665],
-                    logos: ["{{ asset('logo/l59.png') }}"]
+                    // logos: ["{{ asset('logo/l59.png') }}"]
+                    logos: []
                 },
             ];
 
@@ -455,7 +487,7 @@
             gsap.registerPlugin(ScrollTrigger);
 
             // 1. Typing Effect
-            const words = ["M&A Strategy", "Global Presence", "Portfolio Strategy"];
+            const words = ["M&A Strategy", "Strategic Wargaming", "Target Screening"];
             let wordIndex = 0,
                 charIndex = 0,
                 isDeleting = false;

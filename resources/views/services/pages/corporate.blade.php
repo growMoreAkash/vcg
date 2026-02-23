@@ -35,7 +35,7 @@
 @endpush
 
 @section('content')
-    <section class="w-full relative bg-white overflow-x-hidden">
+    {{-- <section class="w-full relative bg-white overflow-x-hidden">
         
         <div class="relative h-[80vh] w-full">
             <img src="{{ asset('b3.png') }}" class="w-full h-full object-cover" alt="Hero Background">
@@ -126,7 +126,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection
 
 @push('scripts')

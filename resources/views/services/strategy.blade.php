@@ -16,16 +16,11 @@
         img {
             will-change: transform;
         }
-
-        /* Smooth reveal for the snake path */
-        #snake-path {
-            transition: stroke-dashoffset 0.1s linear;
-        }
     </style>
 @endpush
 
 @section('content')
-    <section class="w-full relative bg-white overflow-x-hidden">
+    {{-- <section class="w-full relative bg-white overflow-x-hidden">
         
         <div class="relative h-[80vh] w-full">
             <img src="{{ asset('b1.png') }}" class="w-full h-full object-cover" alt="Hero Background">
@@ -54,18 +49,10 @@
             </p>
         </div>
 
-        <section class="bg-gray-900 text-white relative py-20">
+        <section class="bg-gray-300 text-white relative py-20">
             <div id="animation-container" class="relative min-h-screen px-6 md:px-20">
 
-                <div class="absolute left-6 md:left-20 top-0 h-full w-24">
-                    <svg width="100" height="100%" viewBox="0 0 100 1000" preserveAspectRatio="none" class="h-full">
-                        <path id="snake-path"
-                            d="M 50 0 C 100 150 0 150 50 300 C 100 450 0 450 50 600 C 100 750 0 750 50 900 C 100 1050 0 1050 50 1200"
-                            stroke="#991b1b" stroke-width="5" fill="transparent" stroke-linecap="round" />
-                    </svg>
-                </div>
-
-                <div class="ml-24 md:ml-48 flex flex-col gap-32 relative z-10 max-w-5xl">
+                <div class="mx-auto flex flex-col gap-32 relative z-10 max-w-5xl">
 
                     @php
                         $sections = [
@@ -98,14 +85,14 @@
                     @endphp
 
                     @foreach ($sections as $section)
-                        <div class="opacity-0 b-item flex flex-col lg:flex-row gap-10 items-center bg-gray-800/40 p-8 rounded-3xl border border-gray-700 backdrop-blur-md shadow-2xl">
+                        <div class="opacity-0 b-item flex flex-col lg:flex-row gap-10 items-center bg-gray-200/40 p-8 rounded-3xl border border-gray-700 backdrop-blur-md shadow-2xl">
                             <div class="w-full lg:w-1/2">
                                 <img src="{{ asset('strategy/' . $section['img']) }}" alt="{{ $section['title'] }}"
                                     class="rounded-xl shadow-lg w-full object-cover aspect-video hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="w-full lg:w-1/2">
                                 <h3 class="text-3xl font-bold mb-4 text-red-600">{{ $section['title'] }}</h3>
-                                <p class="text-gray-300 text-lg leading-relaxed">{{ $section['desc'] }}</p>
+                                <p class="text-gray-300 text-lg leading-relaxed text-gray-800">{{ $section['desc'] }}</p>
                                 <button class="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-300 cursor-pointer">Read More</button>
                             </div>
                         </div>
@@ -113,8 +100,8 @@
 
                 </div>
             </div>
-</section>
-    </section>
+        </section>
+    </section> --}}
 @endsection
 
 @push('scripts')
@@ -158,28 +145,7 @@
             }
             typeEffect();
 
-            /* ---------------- 2. SNAKE PATH ANIMATION ---------------- */
-            const path = document.querySelector("#snake-path");
-            const pathLength = path.getTotalLength();
-
-            // Setup the "draw-in" effect by manipulating dash offset
-            gsap.set(path, {
-                strokeDasharray: pathLength,
-                strokeDashoffset: pathLength
-            });
-
-            gsap.to(path, {
-                strokeDashoffset: 0,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "#animation-container",
-                    start: "top 20%",
-                    end: "bottom 80%",
-                    scrub: 0.5,
-                }
-            });
-
-            /* ---------------- 3. ITEM REVEAL ANIMATION ---------------- */
+            /* ---------------- 2. ITEM REVEAL ANIMATION ---------------- */
             const items = document.querySelectorAll('.b-item');
 
             items.forEach((item) => {

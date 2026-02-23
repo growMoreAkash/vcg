@@ -26,18 +26,112 @@
             opacity: 0;
             transform: translateY(20px);
         }
+    </style>
 
-        .strategy-bullet {
-            opacity: 0;
-            transform: translateX(80px);
+    <style>
+        .card {
+            width: 100%;
+            height: 400px;
+            perspective: 1000px;
             cursor: pointer;
-            /* Indicate interactivity */
         }
 
-        .vertical-text {
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            white-space: nowrap;
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+            /* CRITICAL */
+        }
+
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* BOTH SIDES SETUP */
+        .card-front,
+        .card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            /* Safari Fix */
+            backface-visibility: hidden;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        /* --- FRONT SPECIFIC --- */
+        .card-front {
+            background-color: #000;
+            /* CRITICAL: Forces front to stay on front */
+            transform: rotateY(0deg);
+            z-index: 2;
+        }
+
+        .card-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1));
+            z-index: 2;
+        }
+
+        .card-title {
+            position: absolute;
+            bottom: 2rem;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 3;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- BACK SPECIFIC --- */
+        .card-back {
+            /* CRITICAL: Hardcoded solid background so image doesn't bleed through */
+            background-color: #18181b;
+            transform: rotateY(180deg);
+            z-index: 1;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .card-back h4 {
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #991b1b;
+            /* Your brand red */
+            padding-bottom: 0.5rem;
+            width: 100%;
+        }
+
+        .card-back ul {
+            color: #d1d5db;
+            list-style-type: disc;
+            padding-left: 1.25rem;
+            line-height: 2;
         }
     </style>
 @endpush
@@ -65,8 +159,8 @@
             <div class="flex justify-center border-b border-gray-200 mb-12">
                 <button id="default-tab-btn" onclick="switchTab(event, 'strategy')"
                     class="tab-btn px-8 py-4 font-bold text-gray-500 active">Industry Coverage</button>
-                <button onclick="switchTab(event, 'highlights')"
-                    class="tab-btn px-8 py-4 font-bold text-gray-500">Highlights</button>
+                {{-- <button onclick="switchTab(event, 'highlights')"
+                    class="tab-btn px-8 py-4 font-bold text-gray-500">Highlights</button> --}}
                 <button onclick="switchTab(event, 'contact')" class="tab-btn px-8 py-4 font-bold text-gray-500">Contact
                     Us</button>
             </div>
@@ -81,131 +175,140 @@
 
                     <h3 class="text-2xl font-bold text-red-800 reveal-para mb-8">Below is a selection of industry sectors in
                         which members of the team have advised:</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl mx-auto px-6 py-12">
 
-                    <div id="strategy" class="tab-content active">
-                        <div class="max-w-4xl mx-auto space-y-8 text-gray-800 text-lg leading-relaxed">
-                            <p class="reveal-para">We are a broad-based Strategy Consulting and M&A advisory firm...</p>
-
-                            <h3 class="text-2xl font-bold text-red-800 reveal-para mb-8">
-                                Below is a selection of industry sectors...
-                            </h3>
-
-                            <div class="mt-24 flex gap-12 relative items-start" id="industrials-section">
-                                <div class="sticky top-40 flex items-center">
-                                    <div class="relative">
-                                        <h3
-                                            class="text-6xl font-black text-red-800/10 text-center uppercase tracking-tighter vertical-text leading-none select-none">
-                                            Industrials
-                                        </h3>
-                                    </div>
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <img src="{{ asset('h1.jpeg') }}" class="card-img" alt="Industrials">
+                                    <div class="card-overlay"></div>
+                                    <h3 class="card-title">Industrials</h3>
                                 </div>
-
-                                <div class="relative flex flex-col gap-6 w-full pl-12" id="bullet-container">
-
-                                    <div class="absolute left-0 top-0 h-full w-1 z-0">
-                                        <svg width="4" height="100%" class="h-full overflow-visible">
-                                            <line id="industrials-line" x1="2" y1="0" x2="2"
-                                                y2="100%" stroke="#991b1b" stroke-width="4" stroke-linecap="round" />
-                                        </svg>
-                                    </div>
-
-                                    @php
-                                        $bullets = [
-                                            'Corporate Strategy & Planning',
-                                            'Growth & Market Entry Strategy',
-                                            'M&A and Portfolio Optimization',
-                                            'Competitive Intelligence & Wargaming',
-                                            'Commercial Due Diligence',
-                                            'Target Screening & Private Equity Support',
-                                            'Shareholder Value Management',
-                                        ];
-                                    @endphp
-
-                                    @foreach ($bullets as $bullet)
-                                        <div
-                                            class="strategy-bullet relative z-10 flex items-center gap-4 bg-gray-50 p-6 rounded-xl border-l-4 border-red-800 shadow-sm w-full transition-all group hover:bg-white hover:shadow-xl">
-                                            <span
-                                                class="text-red-800 font-bold text-2xl transform transition-transform group-hover:translate-x-2">→</span>
-                                            <span class="font-bold text-gray-800 text-lg">{{ $bullet }}</span>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="mt-24 flex gap-12 relative items-start" id="industrials-section">
-                                <div class="sticky top-40 flex items-center">
-                                    <div class="relative">
-                                        <h3
-                                            class="text-6xl font-black text-red-800/10 text-center uppercase tracking-tighter vertical-text leading-none select-none">
-                                            Industrials
-                                        </h3>
-                                    </div>
-                                </div>
-
-                                <div class="relative flex flex-col gap-6 w-full pl-12" id="bullet-container">
-
-                                    <div class="absolute left-0 top-0 h-full w-1 z-0">
-                                        <svg width="4" height="100%" class="h-full overflow-visible">
-                                            <line id="industrials-line" x1="2" y1="0" x2="2"
-                                                y2="100%" stroke="#991b1b" stroke-width="4" stroke-linecap="round" />
-                                        </svg>
-                                    </div>
-
-                                    @php
-                                        $bullets = [
-                                            'Corporate Strategy & Planning',
-                                            'Growth & Market Entry Strategy',
-                                            'M&A and Portfolio Optimization',
-                                            'Competitive Intelligence & Wargaming',
-                                            'Commercial Due Diligence',
-                                            'Target Screening & Private Equity Support',
-                                            'Shareholder Value Management',
-                                        ];
-                                    @endphp
-
-                                    @foreach ($bullets as $bullet)
-                                        <div
-                                            class="strategy-bullet relative z-10 flex items-center gap-4 bg-gray-50 p-6 rounded-xl border-l-4 border-red-800 shadow-sm w-full transition-all group hover:bg-white hover:shadow-xl">
-                                            <span
-                                                class="text-red-800 font-bold text-2xl transform transition-transform group-hover:translate-x-2">→</span>
-                                            <span class="font-bold text-gray-800 text-lg">{{ $bullet }}</span>
-                                        </div>
-                                    @endforeach
+                                <div class="card-back">
+                                    <h4>Sectors</h4>
+                                    <ul>
+                                        <li>Engineering</li>
+                                        <li>Manufacturing</li>
+                                        <li>Automotive</li>
+                                        <li>Chemicals</li>
+                                        <li>Packaging</li>
+                                        <li>Aerospace</li>
+                                        <li>Textiles</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <img src="{{ asset('h1.jpeg') }}" class="card-img" alt="Consumer">
+                                    <div class="card-overlay"></div>
+                                    <h3 class="card-title">Consumer</h3>
+                                </div>
+                                <div class="card-back">
+                                    <h4>Sectors</h4>
+                                    <ul>
+                                        <li>Retail</li>
+                                        <li>FMCG</li>
+                                        <li>D2C brands</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <img src="{{ asset('h1.jpeg') }}" class="card-img" alt="Infrastructure">
+                                    <div class="card-overlay"></div>
+                                    <h3 class="card-title">Infrastructure</h3>
+                                </div>
+                                <div class="card-back">
+                                    <h4>Sectors</h4>
+                                    <ul>
+                                        <li>Power</li>
+                                        <li>Roads</li>
+                                        <li>EPC</li>
+                                        <li>Real Estate</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <img src="{{ asset('h1.jpeg') }}" class="card-img" alt="Technology">
+                                    <div class="card-overlay"></div>
+                                    <h3 class="card-title">Technology</h3>
+                                </div>
+                                <div class="card-back">
+                                    <h4>Sectors</h4>
+                                    <ul>
+                                        <li>Enterprise</li>
+                                        <li>Consumer</li>
+                                        <li>Media</li>
+                                        <li>Telecom</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <img src="{{ asset('h1.jpeg') }}" class="card-img" alt="Lifesciences">
+                                    <div class="card-overlay"></div>
+                                    <h3 class="card-title">Lifesciences</h3>
+                                </div>
+                                <div class="card-back">
+                                    <h4>Sectors</h4>
+                                    <ul>
+                                        <li>Pharmaceuticals</li>
+                                        <li>Biotech</li>
+                                        <li>Healthcare</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                </div>
-            </div>
 
-            <div id="highlights" class="tab-content">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    @foreach (range(1, 3) as $i)
-                        <div class="highlight-card bg-red-800 text-white p-8 rounded-lg shadow-lg">
-                            <h4 class="text-4xl font-bold mb-2">95%</h4>
-                            <p class="text-red-100 italic">Success rate in market entry strategies for Global 500 firms.</p>
-                        </div>
-                    @endforeach
                 </div>
-            </div>
 
-            <div id="contact" class="tab-content">
-                <div class="max-w-2xl mx-auto bg-gray-50 p-10 rounded-2xl shadow-lg border border-gray-100">
-                    <form action="#" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <input type="text" placeholder="Name"
-                                class="p-4 border rounded-lg focus:ring-2 focus:ring-red-800 outline-none transition">
-                            <input type="email" placeholder="Email"
-                                class="p-4 border rounded-lg focus:ring-2 focus:ring-red-800 outline-none transition">
-                        </div>
-                        <textarea placeholder="Your Message" rows="5"
-                            class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-red-800 outline-none transition"></textarea>
-                        <button
-                            class="w-full bg-red-800 text-white font-bold py-4 rounded-lg hover:bg-black transition-all duration-300">Send
-                            Message</button>
-                    </form>
-                </div>
             </div>
+        </div>
+{{-- 
+        <div id="highlights" class="tab-content">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                @foreach (range(1, 3) as $i)
+                    <div class="highlight-card bg-red-800 text-white p-8 rounded-lg shadow-lg">
+                        <h4 class="text-4xl font-bold mb-2">95%</h4>
+                        <p class="text-red-100 italic">Success rate in market entry strategies for Global 500 firms.</p>
+                    </div>
+                @endforeach
+            </div>
+        </div> --}}
+
+        <div id="contact" class="tab-content">
+            <div class="max-w-2xl mx-auto bg-gray-50 p-10 rounded-2xl shadow-lg border border-gray-100">
+                <form action="#" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="Name"
+                            class="p-4 border rounded-lg focus:ring-2 focus:ring-red-800 outline-none transition">
+                        <input type="email" placeholder="Email"
+                            class="p-4 border rounded-lg focus:ring-2 focus:ring-red-800 outline-none transition">
+                    </div>
+                    <textarea placeholder="Your Message" rows="5"
+                        class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-red-800 outline-none transition"></textarea>
+                    <button
+                        class="w-full bg-red-800 text-white font-bold py-4 rounded-lg hover:bg-black transition-all duration-300">Send
+                        Message</button>
+                </form>
+            </div>
+        </div>
         </div>
     </section>
 @endsection
