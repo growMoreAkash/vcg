@@ -327,152 +327,40 @@
         }
     </style>
 
+
     <style>
-        .fade-up {
+        /* --- Credential 3D Cards --- */
+        .cred-wrapper {
+            perspective: 1000px;
+        }
+
+        .cred-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.3s;
+            will-change: transform;
+        }
+
+        /* 3D Tilt and slight lift on hover */
+        .cred-wrapper:hover .cred-inner {
+            transform: rotateX(10deg) rotateY(-10deg) scale(1.05);
+            /* Enhances the glass border on hover */
+            border-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Pushes the content towards the user */
+        .cred-content {
+            transform: translateZ(50px);
+            transform-style: preserve-3d;
+        }
+
+        /* Initial GSAP hidden state */
+        .cred-wrapper {
             opacity: 0;
-            transform: translateY(60px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-left {
-            opacity: 0;
-            transform: translateX(-120px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-right {
-            opacity: 0;
-            transform: translateX(120px);
-            transition: all 0.8s ease;
-        }
-
-        .show {
-            opacity: 1;
-            transform: translate(0, 0);
-        }
-
-        /* vertical timeline (React-like) */
-        .vertical-timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .vertical-timeline::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 4px;
-            height: 100%;
-            background: #7f1d1d;
-            transform: translateX(-50%);
-        }
-
-        .vertical-timeline-element {
-            position: relative;
-            margin: 0 0 4rem;
-        }
-
-        .vertical-timeline-element:last-child {
-            margin-bottom: 0;
-        }
-
-        .vertical-timeline-element-icon {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 56px;
-            height: 56px;
-            margin-left: -28px;
-            border-radius: 50%;
-            background: #5e1210;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.75rem;
-            box-shadow: 0 0 0 6px rgba(94, 18, 16, 0.25);
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.7s ease;
-        }
-
-        .vertical-timeline-element-content {
-            position: relative;
-            width: 44%;
-            background: #5e1210;
-            color: #ffffff;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s ease;
-        }
-
-        .vertical-timeline-element-content::after {
-            content: "";
-            position: absolute;
-            top: 24px;
-            width: 0;
-            height: 0;
-            border: 10px solid transparent;
-        }
-
-        .vertical-timeline-element-date {
-            display: inline-block;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .vertical-timeline-element:nth-child(odd) .vertical-timeline-element-content {
-            margin-left: 0;
-            margin-right: auto;
-        }
-
-        .vertical-timeline-element:nth-child(odd) .vertical-timeline-element-content::after {
-            right: -20px;
-            border-left-color: #5e1210;
-        }
-
-        .vertical-timeline-element:nth-child(even) .vertical-timeline-element-content {
-            margin-left: auto;
-            margin-right: 0;
-        }
-
-        .vertical-timeline-element:nth-child(even) .vertical-timeline-element-content::after {
-            left: -20px;
-            border-right-color: #5e1210;
-        }
-
-        .vertical-timeline-element--visible .vertical-timeline-element-content,
-        .vertical-timeline-element--visible .vertical-timeline-element-icon {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        @media (max-width: 900px) {
-            .vertical-timeline::before {
-                left: 24px;
-            }
-
-            .vertical-timeline-element-icon {
-                left: 24px;
-                margin-left: 0;
-            }
-
-            .vertical-timeline-element-content {
-                width: calc(100% - 72px);
-                margin-left: 72px !important;
-            }
-
-            .vertical-timeline-element-content::after {
-                left: -20px;
-                border-right-color: #5e1210;
-            }
+            transform: translateY(50px);
         }
     </style>
+
 
     <style>
         /* Swiper Wrapper */
@@ -607,7 +495,8 @@
             <h1 class="text-xl text-gray-700 font-verdana">
                 Welcome to Vortex Consulting Group
             </h1>
-            <h2 class="text-3xl text-gray-900 font-semibold font-verdana"> Partnering with Leaders to Shape Strategy and Unlock Growth
+            <h2 class="text-3xl text-gray-900 font-semibold font-verdana"> Partnering with Leaders to Shape Strategy and
+                Unlock Growth
             </h2>
         </div>
 
@@ -688,78 +577,85 @@
         </div>
     </section>
 
+ <section id="credentials-section" class="bg-red-800 py-24 text-white overflow-hidden relative">
 
-    {{-- leadership section --}}
-    <section id="leadership-section" class="px-6 md:px-20 py-20 bg-white overflow-hidden">
-        <div class="flex flex-wrap gap-12 lg:gap-16 items-start">
-
-            <div class="leadership-img-container w-full lg:w-[calc(50%-2rem)]" style="perspective: 1000px;">
-                <div class="relative image-tilt-wrapper group">
-                    <div
-                        class="spotlight-glow absolute -inset-10 bg-red-800/20 blur-[900px] rounded-full opacity-0 scale-50 transition-opacity duration-500 pointer-events-none">
-                    </div>
-                    <img src="{{ asset('founder.jpg') }}"
-                        class="founder-image h-[50vh] lg:h-[75vh] w-full object-cover rounded-2xl shadow-2xl relative z-10"
-                        alt="Founder">
-                </div>
-            </div>
-
-            <div class="leadership-text w-full lg:w-[calc(50%-2rem)]">
-                <h1 class="text-4xl font-extrabold text-red-800 mb-6 uppercase tracking-tight reveal-text">
-                    Leadership
-                </h1>
-
-                <h2 class="text-3xl font-bold mb-8 text-gray-900 leading-tight reveal-text">
-                    Vaibhav focuses on creating <span
-                        class="text-red-800 underline decoration-red-800/30 underline-offset-8">tangible and exponential
-                        value</span> for firms looking to leapfrog the marketplace!
-                </h2>
-
-                <div class="text-lg text-gray-700 leading-relaxed space-y-6">
-                    <p class="reveal-text font-medium text-gray-900">
-                        Vaibhav Ranjan is the Founder & Principal of Vortex Consulting Group, leading the Strategy and M&A
-                        Consulting practice. He has over 20 years of global experience serving clients on key inorganic and
-                        organic growth initiatives across North America, Western Europe and APAC Japan.
-                    </p>
-
-                    <button id="read-more-btn"
-                        class="flex cursor-pointer items-center gap-3 text-red-800 font-bold uppercase tracking-widest text-sm hover:gap-5 transition-all group">
-                        <span class="btn-text">Read More</span>
-                        <span class="text-xl group-hover:translate-x-1 transition-transform">→</span>
-                    </button>
-                </div>
-            </div>
-
-            <div id="extra-content" class="w-full h-0 opacity-0 overflow-hidden mt-4 lg:mt-0">
-                <div class="pt-12 border-t border-gray-100 space-y-8 text-lg text-gray-700 leading-relaxed">
-                    <div class="grid grid-cols-1 gap-12">
-                        <p>
-                            Previously, he served as Principal and Head of International Business for the consulting service
-                            line at Transjovan Capital Advisors Pvt Ltd, where he delivered 75+ engagements, driving over
-                            $15M in sales revenue within 3.5 years.
-                            Before that, he worked with Monitor Deloitte in the Strategy & Business Design and Financial
-                            Services Industry practices with a focus on strategy, new ventures, and M&A.
-                        </p>
-                        <p>
-                            Earlier, he headed the Strategy, Planning, and Venture Capital arm of the Suncorp Group in
-                            Australia, an ASX 20 banking, insurance, and financial services conglomerate.
-                        </p>
-                    </div>
-
-                    <p
-                        class="border-l-4 border-red-800 pl-8 py-2 italic font-medium text-gray-600 bg-gray-50/50 rounded-r-xl">
-                        Vaibhav has advised Boards, CEOs and CFOs and executive management teams across North American,
-                        Australian and European geographies on the evolving market landscape and global best practices,
-                        delivering significant client impact through levers of dominant strategy, growth options and the
-                        creation of sustainable competitive advantages that protect market leadership.
-                    </p>
-                </div>
-            </div>
-
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-full bg-red-700 blur-[100px] rounded-full opacity-50 z-0">
         </div>
+
+        <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+            {{-- <p class="text-sm uppercase tracking-widest mb-4 inline-block border-b border-white/40 pb-2">Our Credentials</p> --}}
+            <h2 class="text-4xl md:text-5xl font-bold mb-20 drop-shadow-lg">Transforming Businesses Globally</h2>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <div class="cred-wrapper">
+                    <div
+                        class="cred-inner bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 text-center shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] h-full cursor-pointer">
+                        <div class="cred-content flex flex-col items-center h-full">
+                            <div class="text-6xl mb-6 drop-shadow-md">
+                                <i class="ri-team-line"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4">Team</h3>
+                            <p class="text-base text-red-100 leading-relaxed">
+                                The leadership team comprises ex-EY, Monitor Deloitte, Kearney, and KPMG professionals.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cred-wrapper">
+                    <div
+                        class="cred-inner bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 text-center shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] h-full cursor-pointer">
+                        <div class="cred-content flex flex-col items-center h-full">
+                            <div class="text-6xl mb-6 drop-shadow-md">
+                                <i class="ri-global-fill"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4">Global Coverage</h3>
+                            <p class="text-base text-red-100 leading-relaxed">
+                                With offices in New Delhi, Los Angeles, & Sydney, we offer extensive coverage across
+                                geographies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cred-wrapper">
+                    <div
+                        class="cred-inner bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 text-center shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] h-full cursor-pointer">
+                        <div class="cred-content flex flex-col items-center h-full">
+                            <div class="text-6xl mb-6 drop-shadow-md">
+                                <i class="ri-user-3-fill"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4">Marquee Clientele</h3>
+                            <p class="text-base text-red-100 leading-relaxed">
+                                Executed 250+ client engagements across the globe for various industries.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cred-wrapper">
+                    <div
+                        class="cred-inner bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 text-center shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] h-full cursor-pointer">
+                        <div class="cred-content flex flex-col items-center h-full">
+                            <div class="text-6xl mb-6 drop-shadow-md">
+                                <i class="ri-user-star-fill"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4">Specialists</h3>
+                            <p class="text-base text-red-100 leading-relaxed">
+                                For Strategy, M&A and Deal Advisory.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </section>
-
-
 
     <!-- SERVICES SECTION -->
     <section class="bg-[#363b46] py-20 px-6 md:px-20 min-h-[400px]">
@@ -826,70 +722,7 @@
         </div>
     </section>
 
-
-    <!-- CREDENTIALS SECTION -->
-    <section class="bg-red-800 py-20 text-white overflow-hidden">
-
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h1 class="text-4xl font-semibold mb-4">Our Credentials</h1>
-            <h2 class="text-2xl mb-20">Transforming businesses globally</h2>
-        </div>
-
-        <!-- TIMELINE -->
-        <div class="vertical-timeline max-w-6xl mx-auto px-6">
-
-            <div class="vertical-timeline-element">
-                <span class="vertical-timeline-element-icon">
-                    <i class="ri-team-line"></i>
-                </span>
-                <div class="vertical-timeline-element-content">
-                    <span class="vertical-timeline-element-date">TEAM</span>
-                    <h3 class="text-xl">
-                        The leadership team comprises ex-EY, Monitor Deloitte, Kearney, and KPMG professionals.
-                    </h3>
-                </div>
-            </div>
-
-            <div class="vertical-timeline-element">
-                <span class="vertical-timeline-element-icon">
-                    <i class="ri-global-fill"></i>
-                </span>
-                <div class="vertical-timeline-element-content">
-                    <span class="vertical-timeline-element-date">GLOBAL COVERAGE</span>
-                    <h3 class="text-xl">
-                        With offices in New Delhi, Los Angeles, & Sydney, we offer extensive coverage across geographies.
-                    </h3>
-                </div>
-            </div>
-
-            <div class="vertical-timeline-element">
-                <span class="vertical-timeline-element-icon">
-                    <i class="ri-user-3-fill"></i>
-                </span>
-                <div class="vertical-timeline-element-content">
-                    <span class="vertical-timeline-element-date">MARQUEE CLIENTELE</span>
-                    <h3 class="text-xl">
-                        Executed 250+ client engagements across the globe for various industries.
-                    </h3>
-                </div>
-            </div>
-
-            <div class="vertical-timeline-element">
-                <span class="vertical-timeline-element-icon">
-                    <i class="ri-user-star-fill"></i>
-                </span>
-                <div class="vertical-timeline-element-content">
-                    <span class="vertical-timeline-element-date">SPECIALISTS</span>
-                    <h3 class="text-xl">
-                        For Strategy, M&A and Deal Advisory.
-                    </h3>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="bg-[#ffffff] py-24 px-6 overflow-hidden">
+    <section class="bg-[#ffffff] py-24 px-12 overflow-hidden">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
             <div class="w-full lg:w-[35%] text-gray-800 flex-shrink-0">
@@ -906,60 +739,130 @@
             </div>
 
             <div class="w-full lg:w-[65%] min-w-0">
-                <div class="swiper cinematicSwiper pb-12">
-                    <div class="swiper-wrapper">
+                <div class="flex flex-col sm:flex-row h-[500px] gap-4 w-full">
 
-                        <div class="swiper-slide cinematic-card group">
-                            <div class="card-image-wrapper">
-                                <img src="{{ asset('h1.jpeg') }}" alt="PE & VC Funds" />
-                                <div class="overlay-gradient"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3>PE & VC Funds</h3>
-                                <p>Delivering strategic due diligence and portfolio value creation.</p>
-                            </div>
+                    <div
+                        class="group relative flex-1 hover:flex-[3] overflow-hidden rounded-2xl transition-all duration-500 ease-out cursor-pointer shadow-lg">
+                        <img src="{{ asset('h1.jpeg') }}" alt="PE & VC Funds"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
                         </div>
 
-                        <div class="swiper-slide cinematic-card group">
-                            <div class="card-image-wrapper">
-                                <img src="{{ asset('h2.jpeg') }}" alt="Fortune 500" />
-                                <div class="overlay-gradient"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3>Fortune-500</h3>
-                                <p>Guiding global enterprises through complex M&A and market entry.</p>
-                            </div>
+                        <div
+                            class="absolute bottom-0 left-0 p-6 sm:p-8 w-[300px] opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 ease-out flex flex-col justify-end pointer-events-none">
+                            <h3 class="text-2xl font-bold text-white mb-2 whitespace-nowrap">Large Corporates</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">We assist large acquirers, including Fortune 500 corporations, as a buy-side advisor...</p>
                         </div>
-
-                        <div class="swiper-slide cinematic-card group">
-                            <div class="card-image-wrapper">
-                                <img src="{{ asset('h3.jpeg') }}" alt="Conglomerates" />
-                                <div class="overlay-gradient"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3>Conglomerates</h3>
-                                <p>Transforming legacy businesses with modern growth strategies.</p>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide cinematic-card group">
-                            <div class="card-image-wrapper">
-                                <img src="{{ asset('h3.jpeg') }}" alt="SMEs" />
-                                <div class="overlay-gradient"></div>
-                            </div>
-                            <div class="card-content">
-                                <h3>SMEs</h3>
-                                <p>Scaling small and medium enterprises for exponential growth.</p>
-                            </div>
-                        </div>
-
                     </div>
-                    <div class="swiper-pagination mt-8"></div>
+
+                    <div
+                        class="group relative flex-1 hover:flex-[3] overflow-hidden rounded-2xl transition-all duration-500 ease-out cursor-pointer shadow-lg">
+                        <img src="{{ asset('h2.jpeg') }}" alt="Fortune 500"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+
+                        <div
+                            class="absolute bottom-0 left-0 p-6 sm:p-8 w-[300px] opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 ease-out flex flex-col justify-end pointer-events-none">
+                            <h3 class="text-2xl font-bold text-white mb-2 whitespace-nowrap">Established SMEs</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed"> We assist SMEs for Equity Capital-raise, M&A Advisory, Business Planning and Performance Improvement engagements.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="group relative flex-1 hover:flex-[3] overflow-hidden rounded-2xl transition-all duration-500 ease-out cursor-pointer shadow-lg">
+                        <img src="{{ asset('h3.jpeg') }}" alt="Conglomerates"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+
+                        <div
+                            class="absolute bottom-0 left-0 p-6 sm:p-8 w-[300px] opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 ease-out flex flex-col justify-end pointer-events-none">
+                            <h3 class="text-2xl font-bold text-white mb-2 whitespace-nowrap">Global Investors</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">We assist global PE/VC investors across the deal cycle from market scan, commercial diligence to portfolio management and exits.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
     </section>
+
+
+    {{-- leadership section --}}
+    <section id="leadership-section" class="px-6 md:px-20 py-20 bg-white overflow-hidden">
+        <div class="flex flex-wrap gap-12 lg:gap-16 items-start">
+
+            <div class="leadership-img-container w-full lg:w-[calc(50%-2rem)]" style="perspective: 1000px;">
+                <div class="relative image-tilt-wrapper group">
+                    <div
+                        class="spotlight-glow absolute -inset-10 bg-red-800/20 blur-[900px] rounded-full opacity-0 scale-50 transition-opacity duration-500 pointer-events-none">
+                    </div>
+                    <img src="{{ asset('founder.jpg') }}"
+                        class="founder-image w-[75%] object-cover rounded-2xl shadow-2xl relative z-10"
+                        alt="Founder">
+                </div>
+            </div>
+
+            <div class="leadership-text w-full lg:w-[calc(50%-2rem)]">
+                <h1 class="text-4xl font-extrabold text-red-800 mb-6 uppercase tracking-tight reveal-text">
+                    Leadership
+                </h1>
+
+                <h2 class="text-3xl font-bold mb-8 text-gray-900 leading-tight reveal-text">
+                    Vaibhav focuses on creating <span
+                        class="text-red-800 underline decoration-red-800/30 underline-offset-8">tangible and exponential
+                        value</span> for firms looking to leapfrog the marketplace!
+                </h2>
+
+                <div class="text-lg text-gray-700 leading-relaxed space-y-6">
+                    <p class="reveal-text font-medium text-gray-900">
+                        Vaibhav Ranjan is the Founder & Principal of Vortex Consulting Group, leading the Strategy and M&A
+                        Consulting practice. He has over 20 years of global experience serving clients on key inorganic and
+                        organic growth initiatives across North America, Western Europe and APAC Japan.
+                    </p>
+
+                    <button id="read-more-btn"
+                        class="flex cursor-pointer items-center gap-3 text-red-800 font-bold uppercase tracking-widest text-sm hover:gap-5 transition-all group">
+                        <span class="btn-text">Read More</span>
+                        <span class="text-xl group-hover:translate-x-1 transition-transform">→</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="extra-content" class="w-full h-0 opacity-0 overflow-hidden mt-4 lg:mt-0">
+                <div class="pt-12 border-t border-gray-100 space-y-8 text-lg text-gray-700 leading-relaxed">
+                    <div class="grid grid-cols-1 gap-12">
+                        <p>
+                            Previously, he served as Principal and Head of International Business for the consulting service
+                            line at Transjovan Capital Advisors Pvt Ltd, where he delivered 75+ engagements, driving over
+                            $15M in sales revenue within 3.5 years.
+                            Before that, he worked with Monitor Deloitte in the Strategy & Business Design and Financial
+                            Services Industry practices with a focus on strategy, new ventures, and M&A.
+                        </p>
+                        <p>
+                            Earlier, he headed the Strategy, Planning, and Venture Capital arm of the Suncorp Group in
+                            Australia, an ASX 20 banking, insurance, and financial services conglomerate.
+                        </p>
+                    </div>
+
+                    <p
+                        class="border-l-4 border-red-800 pl-8 py-2 italic font-medium text-gray-600 bg-gray-50/50 rounded-r-xl">
+                        Vaibhav has advised Boards, CEOs and CFOs and executive management teams across North American,
+                        Australian and European geographies on the evolving market landscape and global best practices,
+                        delivering significant client impact through levers of dominant strategy, growth options and the
+                        creation of sustainable competitive advantages that protect market leadership.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
 
     <section class="bg-[#363b46] py-20 px-6">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row justify-center items-start gap-16">
@@ -973,7 +876,7 @@
                     </button>
                     <button id="tabBtn-career" onclick="switchTab('career')"
                         class="pb-3 text-xl font-bold uppercase tracking-wide border-b-2 border-transparent text-gray-400 hover:text-white transition-colors cursor-pointer">
-                        Career
+                        Careers
                     </button>
                 </div>
 
@@ -1067,6 +970,8 @@
             </div>
         </div>
     </section>
+
+
     </div>
 
 @endsection
@@ -1075,6 +980,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // --- Credential Cards Staggered Reveal ---
+        ScrollTrigger.create({
+            trigger: "#credentials-section",
+            start: "top 75%", // Triggers when the section is 75% down the viewport
+            onEnter: () => {
+                gsap.to(".cred-wrapper", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.15, // Delay of 0.15s between each card popping up
+                    ease: "back.out(1.2)" // Premium slight bounce effect
+                });
+            }
+        });
+    </script>
 
     {{-- slider --}}
     <script>

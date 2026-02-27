@@ -2,98 +2,147 @@
 
 @push('styles')
     <style>
-        .scroll-item {
-            opacity: 1;
-            transform: translateX(120px);
-            transition: all 0.9s ease-out;
-        }
-
-        .scroll-item.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
         img {
             will-change: transform;
+        }
+
+        /* --- 3D Card Physics --- */
+        .card-3d-wrapper {
+            perspective: 1200px;
+            /* Gives the depth illusion */
+        }
+
+        .card-3d-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* The tilt effect on hover */
+        .card-3d-wrapper:hover .card-3d-inner {
+            transform: rotateX(8deg) rotateY(-8deg) scale(1.02);
+            box-shadow: -15px 20px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Pushes the text layer OUT towards the user */
+        .content-3d {
+            transform: translateZ(60px);
+            transform-style: preserve-3d;
+        }
+
+        /* Pushes the background slightly back */
+        .bg-3d {
+            transform: translateZ(-20px);
         }
     </style>
 @endpush
 
 @section('content')
-    {{-- <section class="w-full relative bg-white overflow-x-hidden">
-        
-        <div class="relative h-[80vh] w-full">
-            <img src="{{ asset('b1.png') }}" class="w-full h-full object-cover" alt="Hero Background">
+    <section class="w-full relative bg-white overflow-x-hidden">
+
+        <div class="relative h-[55vh] w-full">
+            <img src="{{ asset('b3.png') }}" class="w-full h-full object-cover" alt="Hero Background">
             <div class="absolute inset-0 bg-black/50"></div>
-            <div class="absolute top-[40%] left-[5%] text-white max-w-3xl z-10">
+            <div class="absolute top-[40%] left-[5%] text-white max-w-[800px] z-10">
                 <h1 class="text-4xl italic mb-6">
                     We offer
                     <span id="typing-text" class="text-red-600"></span>
                     <span class="animate-pulse">|</span>
                 </h1>
-
                 <p class="text-lg mb-6">
-                    Empowering your business with strategic insights and data-driven solutions to navigate complex market landscapes.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, dolorem.
                 </p>
-
-                <button class="bg-red-800 px-8 py-4 text-xl font-bold cursor-pointer hover:bg-white hover:text-red-800 transition">
+                {{-- <button
+                    class="bg-red-800 px-8 py-4 text-xl font-bold cursor-pointer hover:bg-white hover:text-red-800 transition">
                     Know More
-                </button>
+                </button> --}}
             </div>
         </div>
 
         <div class="my-20 px-10 flex flex-col items-center gap-10 text-center max-w-5xl mx-auto">
             <h1 class="text-5xl font-semibold text-gray-900">Our Strategic Expertise</h1>
             <p class="text-gray-600 text-lg">
-                Vortex Consulting Group supports clients in crafting competitive strategies to help navigate market ambiguity and business expansion through the following core pillars.
+                Vortex Consulting Group supports clients in crafting competitive strategies to help navigate market
+                ambiguity and business expansion through the following core pillars.
             </p>
         </div>
 
-        <section class="bg-gray-900 text-white relative py-20">
-            <div id="animation-container" class="relative min-h-screen px-6 md:px-20">
+        <section class="bg-gray-300 text-gray-900 relative py-20">
+            <div id="animation-container" class="relative px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
 
-                <div class="mx-auto flex flex-col gap-32 relative z-10 max-w-5xl">
+                @php
+                    $sections = [
+                        [
+                            'img' => 'm1.jpg',
+                            'title' => 'M&A Strategy',
+                            'desc' =>
+                                'In today’s layered and dynamic industry framework, M&A transactions require a deep understanding of deal intricacies, capital allocation strategies, a...',
+                        ],
+                        [
+                            'img' => 'm2.jpg',
+                            'title' => 'Target Screening',
+                            'desc' =>
+                                'If acquiring companies were as straightforward as buying basic commodities, identifying the right targets would be simple.',
+                        ],
+                        [
+                            'img' => 'm3.jpg',
+                            'title' => 'Commercial Due Diligence',
+                            'desc' =>
+                                'A significant number of Mergers & Acquisitions (M&A) and investment deals fail to materialize due to unexpected discrepancies uncovered during the due...',
+                        ],
+                        [
+                            'img' => 'm4.jpg',
+                            'title' => 'Shareholder Value Management',
+                            'desc' =>
+                                'At Vortex Consulting Group, we specialize in enhancing shareholder value by explicitly linking management strategies to the financial returns they generate.',
+                        ],
+                        [
+                            'img' => 'm5.jpg',
+                            'title' => 'Portfolio Strategy',
+                            'desc' =>
+                                'Vortex Consulting Group specializes in helping investors develop high-yield portfolio strategies that drive both revenue growth and profitability in t...',
+                        ],
+                    ];
+                @endphp
 
-                    @php
-                        $sections = [
-                            [
-                                'img' => 's1.jpg',
-                                'title' => 'M&A Strategy',
-                                'desc' => 'In today’s layered and dynamic industry framework, M&A transactions require a deep understanding of deal intricacies, capital allocation strategies, a...',
-                            ],
-                            [
-                                'img' => 's2.jpg',
-                                'title' => 'Target Screening',
-                                'desc' => 'If acquiring companies were as straightforward as buying basic commodities, identifying the right targets would be simple.',
-                            ],
-                            [
-                                'img' => 's3.jpg',
-                                'title' => 'Commercial Due Diligence',
-                                'desc' => 'A significant number of Mergers & Acquisitions (M&A) and investment deals fail to materialize due to unexpected discrepancies uncovered during the due...',
-                            ],
-                            [
-                                'img' => 's4.jpg',
-                                'title' => 'Shareholder Value Management',
-                                'desc' => 'At Vortex Consulting Group, we specialize in enhancing shareholder value by explicitly linking management strategies to the financial returns they generate.',
-                            ],
-                            [
-                                'img' => 's5.jpg',
-                                'title' => 'Portfolio Strategy',
-                                'desc' => 'Vortex Consulting Group specializes in helping investors develop high-yield portfolio strategies that drive both revenue growth and profitability in t...',
-                            ],
-                        ];
-                    @endphp
+                <div class="flex flex-wrap justify-center gap-8 relative z-10">
 
                     @foreach ($sections as $section)
-                        <div class="opacity-0 b-item flex flex-col lg:flex-row gap-10 items-center bg-gray-800/40 p-8 rounded-3xl border border-gray-700 backdrop-blur-md shadow-2xl">
-                            <div class="w-full lg:w-1/2">
-                                <img src="{{ asset('strategy/' . $section['img']) }}" alt="{{ $section['title'] }}"
-                                    class="rounded-xl shadow-lg w-full object-cover aspect-video hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <div class="w-full lg:w-1/2">
-                                <h3 class="text-3xl font-bold mb-4 text-red-600">{{ $section['title'] }}</h3>
-                                <p class="text-gray-300 text-lg leading-relaxed">{{ $section['desc'] }}</p>
-                                <button class="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-300 cursor-pointer">Read More</button>
+                        <div
+                            class="card-3d-wrapper opacity-0 b-item w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] h-[400px]">
+
+                            <div
+                                class="card-3d-inner relative w-full h-full rounded-3xl overflow-hidden bg-black group cursor-pointer border border-gray-700/50">
+
+                                <img src="{{ asset('m&a/' . $section['img']) }}" alt="{{ $section['title'] }}"
+                                    class="bg-3d absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100 z-0">
+
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                                </div>
+
+                                <div
+                                    class="content-3d absolute inset-0 p-8 flex flex-col justify-end z-20 pointer-events-none">
+
+                                    <h3
+                                        class="text-2xl font-bold text-white mb-2 transform translate-y-12 group-hover:translate-y-0 transition-transform duration-500 ease-out drop-shadow-lg">
+                                        {{ $section['title'] }}
+                                    </h3>
+
+                                    <div
+                                        class="opacity-0 transform translate-y-12 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out flex flex-col pointer-events-auto">
+
+                                        <p class="text-gray-300 text-sm leading-relaxed mb-6 line-clamp-3 drop-shadow-md">
+                                            {{ $section['desc'] }}
+                                        </p>
+
+                                        <button
+                                            class="self-start px-6 py-2 bg-red-700 text-white rounded-lg hover:bg-red-600 transition-colors duration-300 font-semibold shadow-[0_4px_14px_0_rgba(185,28,28,0.39)]">
+                                            Read More
+                                        </button>
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     @endforeach
@@ -101,7 +150,7 @@
                 </div>
             </div>
         </section>
-    </section> --}}
+    </section>
 @endsection
 
 @push('scripts')
@@ -112,7 +161,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            /* ---------------- 1. TYPING EFFECT ---------------- */
+            /* ---------------- 1. TYPING EFFECT (Unchanged) ---------------- */
             const words = [
                 "Customer & Channel Strategy",
                 "Competitive Benchmarking and Analytics",
@@ -121,8 +170,12 @@
                 "Corporate & Business Unit Strategy"
             ];
 
-            let wordIndex = 0, charIndex = 0, isDeleting = false;
-            const typingSpeed = 100, deletingSpeed = 50, pauseTime = 2000;
+            let wordIndex = 0,
+                charIndex = 0,
+                isDeleting = false;
+            const typingSpeed = 100,
+                deletingSpeed = 50,
+                pauseTime = 2000;
             const typingElement = document.getElementById("typing-text");
 
             function typeEffect() {
@@ -145,29 +198,25 @@
             }
             typeEffect();
 
-            /* ---------------- 2. ITEM REVEAL ANIMATION ---------------- */
-            const items = document.querySelectorAll('.b-item');
-
-            items.forEach((item) => {
-                gsap.fromTo(item, 
-                { 
-                    x: 100, 
-                    opacity: 0, 
-                    scale: 0.9 
-                }, 
-                { 
-                    x: 0, 
-                    opacity: 1, 
-                    scale: 1,
-                    duration: 1.2,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top 85%",
-                        end: "top 50%",
-                        scrub: 1,
-                    }
-                });
+            /* ---------------- 2. NEW STAGGERED GRID ANIMATION ---------------- */
+            // This pulls all cards up beautifully one after the other 
+            // as soon as the grid enters the viewport.
+            gsap.fromTo(".b-item", {
+                y: 80,
+                opacity: 0,
+                scale: 0.95
+            }, {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.2)", // Gives a slight, premium bounce effect
+                stagger: 0.15, // Delay between each card appearing
+                scrollTrigger: {
+                    trigger: "#animation-container",
+                    start: "top 75%", // Triggers when the top of the container hits 75% down the screen
+                    toggleActions: "play none none reverse" // Replays if you scroll back up
+                }
             });
         });
     </script>

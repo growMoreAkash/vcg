@@ -41,7 +41,7 @@
 @section('content')
     <section class="w-full relative bg-white overflow-x-hidden">
 
-        <div class="relative h-[80vh] w-full">
+        <div class="relative h-[55vh] w-full">
             <img src="{{ asset('b1.png') }}" class="w-full h-full object-cover" alt="Hero Background">
             <div class="absolute inset-0 bg-black/50"></div>
             <div class="absolute top-[40%] left-[5%] text-white max-w-3xl z-10">

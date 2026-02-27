@@ -139,8 +139,8 @@
 @section('content')
     <section class="w-full relative bg-white overflow-x-hidden">
 
-        <div class="relative h-[80vh] w-full">
-            <img src="{{ asset('b3.png') }}" class="w-full h-full object-cover" alt="Hero Background">
+        <div class="relative h-[55vh] w-full">
+            <img src="{{ asset('b4.jpg') }}" class="w-full h-full object-cover" alt="Hero Background">
             <div class="absolute inset-0 bg-black/50"></div>
             <div class="absolute top-[40%] left-[5%] text-white max-w-3xl z-10">
                 <h1 class="text-4xl italic mb-6">
@@ -149,8 +149,8 @@
                 </h1>
                 <p class="text-lg mb-6 reveal-text">Empowering your business with strategic insights and data-driven
                     solutions.</p>
-                <button class="bg-red-800 px-8 py-4 text-xl font-bold hover:bg-white hover:text-red-800 transition">Know
-                    More</button>
+                {{-- <button class="bg-red-800 px-8 py-4 text-xl font-bold hover:bg-white hover:text-red-800 transition">Know
+                    More</button> --}}
             </div>
         </div>
 
@@ -180,7 +180,7 @@
                         <div class="card">
                             <div class="card-inner">
                                 <div class="card-front">
-                                    <img src="{{ asset('h1.jpeg') }}" class="card-img" alt="Industrials">
+                                    <img src="{{ asset('coverages/c1.jpg') }}" class="card-img" alt="Industrials">
                                     <div class="card-overlay"></div>
                                     <h3 class="card-title">Industrials</h3>
                                 </div>
@@ -202,7 +202,7 @@
                         <div class="card">
                             <div class="card-inner">
                                 <div class="card-front">
-                                    <img src="{{ asset('h1.jpeg') }}" class="card-img" alt="Consumer">
+                                    <img src="{{ asset('coverages/c2.jpg') }}" class="card-img" alt="Consumer">
                                     <div class="card-overlay"></div>
                                     <h3 class="card-title">Consumer</h3>
                                 </div>
@@ -220,7 +220,7 @@
                         <div class="card">
                             <div class="card-inner">
                                 <div class="card-front">
-                                    <img src="{{ asset('h1.jpeg') }}" class="card-img" alt="Infrastructure">
+                                    <img src="{{ asset('coverages/c3.jpg') }}" class="card-img" alt="Infrastructure">
                                     <div class="card-overlay"></div>
                                     <h3 class="card-title">Infrastructure</h3>
                                 </div>
@@ -239,7 +239,7 @@
                         <div class="card">
                             <div class="card-inner">
                                 <div class="card-front">
-                                    <img src="{{ asset('h1.jpeg') }}" class="card-img" alt="Technology">
+                                    <img src="{{ asset('coverages/c4.jpg') }}" class="card-img" alt="Technology">
                                     <div class="card-overlay"></div>
                                     <h3 class="card-title">Technology</h3>
                                 </div>
@@ -258,7 +258,7 @@
                         <div class="card">
                             <div class="card-inner">
                                 <div class="card-front">
-                                    <img src="{{ asset('h1.jpeg') }}" class="card-img" alt="Lifesciences">
+                                    <img src="{{ asset('coverages/c5.jpg') }}" class="card-img" alt="Lifesciences">
                                     <div class="card-overlay"></div>
                                     <h3 class="card-title">Lifesciences</h3>
                                 </div>
@@ -280,7 +280,7 @@
 
             </div>
         </div>
-{{-- 
+        {{-- 
         <div id="highlights" class="tab-content">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 @foreach (range(1, 3) as $i)
@@ -292,14 +292,23 @@
             </div>
         </div> --}}
 
-        <div id="contact" class="tab-content">
-            <div class="max-w-2xl mx-auto bg-gray-50 p-10 rounded-2xl shadow-lg border border-gray-100">
-                <form action="#" class="space-y-6">
+        <div id="contact" class="tab-content"><form action="#" class="space-y-6 mb-10">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" placeholder="Name"
-                            class="p-4 border rounded-lg focus:ring-2 focus:ring-red-800 outline-none transition">
-                        <input type="email" placeholder="Email"
-                            class="p-4 border rounded-lg focus:ring-2 focus:ring-red-800 outline-none transition">
+                        <input type="text" placeholder="Your Name*"
+                            class="bg-gray-100 border border-gray-300 text-gray-800 px-6 py-4 text-lg outline-none"
+                            required>
+                        <input type="email" placeholder="Email*"
+                            class="bg-gray-100 border border-gray-300 text-gray-800 px-6 py-4 text-lg outline-none"
+                            required>
+
+                        <input type="tel" placeholder="Phone Number"
+                            class="bg-gray-100 border border-gray-300 text-gray-800 px-6 py-4 text-lg outline-none">
+                        <input type="text" placeholder="Subject"
+                            class="bg-gray-100 border border-gray-300 text-gray-800 px-6 py-4 text-lg outline-none">
+
+                        <textarea rows="5" placeholder="Message*"
+                            class="md:col-span-2 bg-gray-100 border border-gray-300 text-gray-800 px-6 py-4 text-lg outline-none resize-none"
+                            required></textarea>
                     </div>
                     <textarea placeholder="Your Message" rows="5"
                         class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-red-800 outline-none transition"></textarea>
@@ -307,6 +316,8 @@
                         class="w-full bg-red-800 text-white font-bold py-4 rounded-lg hover:bg-black transition-all duration-300">Send
                         Message</button>
                 </form>
+            <div class="max-w-2xl mx-auto p-10  ">
+                
             </div>
         </div>
         </div>
